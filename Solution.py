@@ -5,6 +5,14 @@ from scipy import integrate
 
 # gravitational acceleration [m/s^2]
 g = 9.81
+# suspension mass [kg]
+m1 = 1.0
+# pendulum mass [kg]
+m2 = 1.0
+# pendulum length [m]
+l = 3.0
+# total mass
+m = m1+m2
 
 ######################### Definition of differential equation #########################
 
@@ -14,14 +22,27 @@ g = 9.81
 # Y: array of values of differentiated variables
 # takes Y=[q1, q2, q1d, q2d,...], returns derivatives dY=[q1d, q2d, q1dd, q2dd,...]
 def equationSystem(t, Y):
-    dY = [None]*2
+    q1 = Y[0]
+    q2 = Y[1]
+    q1d = Y[2]
+    q2d = Y[3]
 
+    dY = [None]*4
+    dY[0] = q1d
+    dY[1] = q2d
+    dY[2] = (-m2*g*np.sin(q2)*np.cos(q2) + m2*l*q2d**2*np.sin(q2)) / (m -(m2*np.cos(q2)**2))
+    dY[3] = ((m2*l*q2d**2*np.sin(q2)) + m*g*np.tan(q2)) / (m2*l*np.cos(q2) - m*l/np.cos(q2))
     return dY
 
-Y0 = [0.0, 0.0]
+# intial conditions
+x0 = 4.0
+phi0 = 150*np.pi/180
+v0 = 4.0
+omega0 = 2.5
+Y0 = np.array([x0, phi0, v0, omega0])
 
 # time window [s]
-T = 1.0 
+T = 2*np.pi
 t = [0, T] 
 
 ######################### Solving differential equation ######################### #!

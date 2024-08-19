@@ -4,8 +4,8 @@ This Solver is designed to find numerical solutions to Mechanics based problems.
 ## Example: Free moving pendulum
 $$
 \begin{align}
-\dot{x} &= v,\\
-\dot{\varphi} &= \omega,\\
+v &= \dot{x},\\
+\omega &= \dot{\varphi},\\
 \dot{v} &= -\frac{-m_2g\sin\varphi\cos\varphi+m_2l\dot{\varphi}^2\sin\varphi}{m-m_2\cos^2\varphi},\\
 \dot{\omega} &= \frac{m_2l\dot{\varphi}^2\sin\varphi+mg\tan\varphi}{m_2l\cos\varphi-\frac{ml}{\cos\varphi}}
 \end{align}
