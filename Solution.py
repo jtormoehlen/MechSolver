@@ -10,7 +10,7 @@ m1 = 1.0
 # pendulum mass [kg]
 m2 = 1.0
 # pendulum length [m]
-l = 3.0
+l = 8.0
 # total mass
 m = m1+m2
 
@@ -35,10 +35,10 @@ def equationSystem(t, Y):
     return dY
 
 # intial conditions
-x0 = 4.0
-phi0 = 150*np.pi/180
-v0 = 4.0
-omega0 = 2.5
+x0 = 8.0
+phi0 = 135*np.pi/180
+v0 = 2.0
+omega0 = 2.0
 Y0 = np.array([x0, phi0, v0, omega0])
 
 # time window [s]
@@ -65,4 +65,8 @@ solution = integrate.solve_ivp(equationSystem, t, Y0, max_step = STEP_SIZE)
 # transformation to cartesian coordinates
 # in this example: pos = [q1,q2]
 def coordTrans(pos):
-    return pos
+    x1 = pos[0]
+    y1 = 0.0*pos[0]
+    x2 = l*np.sin(pos[1]) + x1
+    y2 = -l*np.cos(pos[1])
+    return [x1, y1, x2, y2]
