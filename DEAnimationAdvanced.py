@@ -32,11 +32,13 @@ circleRadius = (xlim[1]-xlim[0])/40
 # define all masses for animation as circles
 masses = [AnimationShapes.MovingShape(plt.Circle((0, 0), circleRadius, color=next(colors)), trajectory) for trajectory in DEAnimation.trajectories]
 rod = AnimationShapes.ConnectingShape(plt.Line2D([0,0],[0,0], color='black'), masses[0], masses[1])
+suspension = AnimationShapes.StaticShape(plt.Line2D([-20,20],[0,0], color='grey'))
 
 # collect all shapes in array to pass to animate()
 shapes = [
     *masses,
-    rod
+    rod,
+    suspension
 ]
 
 # classes of used custom shapes (shapes that are not contained in matplotlib)
