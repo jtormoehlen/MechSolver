@@ -49,3 +49,32 @@ class Spring:
 
     def getArtists(self):
         return self.plot
+    
+
+class Cylinder(plt.Circle):
+
+    def __init__(self, *args, **kwargs):
+        plt.Circle.__init__(self, *args, **kwargs)
+        
+
+    def set_R(self, R):
+        self.R = R
+
+    def get_R(self):
+        return self.R
+    
+
+class Plane(plt.Line2D):
+
+    def __init__(self, *args, **kwargs):
+        plt.Line2D.__init__(self, *args, **kwargs)
+
+    def set_HL(self, H, L):
+        self.H = H
+        self.L = L
+
+    def get_H(self):
+        return self.H
+    
+    def get_L(self):
+        return self.L

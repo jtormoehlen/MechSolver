@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 import Animation
 import AnimationShapes
-from Spring import Spring
+from CustomShapes import Spring
 import Solution
 
 ######################### Create base plot #########################

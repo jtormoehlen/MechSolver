@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import matplotlib.patches as patches
 
-import Spring
+from CustomShapes import Spring
 
 class MovingShape:
 
@@ -52,7 +52,7 @@ class ConnectingShape:
             self.shape = patches.ConnectionPatch(pos1,pos2,"data",
                                 axesA = self.shape.axesA,
                                 axesB = self.shape.axesB)
-        elif isinstance(self.shape, Spring.Spring):
+        elif isinstance(self.shape, Spring):
             self.shape.update(pos1,pos2)
         else:
             print("Shape not yet supported. Add to update-method in class ConnectingShape")
