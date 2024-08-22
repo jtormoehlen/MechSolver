@@ -34,5 +34,6 @@ for q in spatialCoords:
         axes[i, j].set_ylabel("Y[" + str(plotNo) + "]")
         axes[i, j].set_xlabel("t")
     plotNo += 1
-    
+
+figure.savefig('./img/plot.png')
 plt.show()

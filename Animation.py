@@ -74,10 +74,11 @@ def animate(figure, axes, shapes, stepSize, customShapes=(), saveGif=False, fps=
 
     if(saveGif):
         print("Saving")
-        anim.save("animation.gif",
+        anim.save("./animation.gif",
                   dpi=dpi,
                   writer=animation.PillowWriter(fps=fps),
                   progress_callback=lambda i, n: print(f'Saving frame {i} of {n}', end='\r')
                   )
+        figure.savefig('./animation.png')
     else:
         plt.show()
