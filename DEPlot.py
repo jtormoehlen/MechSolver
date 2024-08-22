@@ -35,5 +35,5 @@ for q in spatialCoords:
         axes[i, j].set_xlabel("t")
     plotNo += 1
 
-figure.savefig('./img/plot.png')
+figure.savefig('./img/'+str(Solution.model.name)+'Plot.png')
 plt.show()

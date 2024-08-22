@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import Animation
 import AnimationShapes
 import Solution
-import DEAnimation
 
 ######################### Create base plot #########################
 
@@ -27,6 +26,6 @@ colors = iter([plt.cm.Set1(i) for i in range(10)])
 circleRadius = (xlim[1]-xlim[0])/40
 
 # define all masses for animation as circles
-masses = [AnimationShapes.MovingShape(plt.Circle((0, 0), circleRadius, color=next(colors)), trajectory) for trajectory in DEAnimation.trajectories]
+masses = [AnimationShapes.MovingShape(plt.Circle((0, 0), circleRadius, color=next(colors)), trajectory) for trajectory in Solution.trajectories]
 
-Animation.animate(fig, ax, masses, Solution.STEP_SIZE, saveGif=False)
+Animation.animate(fig, ax, masses, Solution.model.STEP_SIZE, saveGif=False)

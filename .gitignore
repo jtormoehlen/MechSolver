@@ -1,5 +1,6 @@
 # ignore output data cache
 /__pycache__/
+/expl/__pycache__/
 
 # ignore animation files
 # animation.gif

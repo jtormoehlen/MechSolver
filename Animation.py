@@ -54,7 +54,7 @@ def addArtists(axes, shapes, customShapes=()):
             axes.add_artist(s.shape)
 
 # create animation
-def animate(figure, axes, shapes, stepSize, customShapes=(), saveGif=False, fps=40, dpi=100):
+def animate(figure, axes, shapes, stepSize, customShapes=(), saveGif=False, fileName='', fps=40, dpi=100):
     addArtists(axes, shapes, customShapes)
     
     frames = range(0, len(shapes[0].trajectory), int(1/(fps*stepSize)))
@@ -74,11 +74,11 @@ def animate(figure, axes, shapes, stepSize, customShapes=(), saveGif=False, fps=
 
     if(saveGif):
         print("Saving")
-        anim.save("./animation.gif",
+        anim.save('./img/'+str(fileName)+'Anim.gif',
                   dpi=dpi,
                   writer=animation.PillowWriter(fps=fps),
                   progress_callback=lambda i, n: print(f'Saving frame {i} of {n}', end='\r')
                   )
-        figure.savefig('./animation.png')
+        figure.savefig('./img/'+str(fileName)+'Anim.png')
     else:
         plt.show()
