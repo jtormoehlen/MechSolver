@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import matplotlib.patches as patches
 
-from CustomShapes import Spring
+import CustomShape
 
 class MovingShape:
 
@@ -15,15 +15,15 @@ class MovingShape:
         self.transTraj = np.transpose(trajectory)
     
     def updateShape(self,frame):
-        
-        if type(self.shape) == type(plt.Circle(0,0)):
+
+        if type(self.shape) == type(CustomShape.Cylinder(0,0)):
+            self.shape.center = self.getPos(frame)[0],self.getPos(frame)[1]+self.shape.get_R()
+        elif type(self.shape) == type(plt.Circle(0,0)):
             self.shape.center = self.getPos(frame)
-        elif type(self.shape) == type(plt.Line2D([], [])):
-            self.shape.set_data([self.getPos(frame)[0],
-                                 self.getPos(frame)[0],
-                                 20+self.getPos(frame)[0],
-                                 self.getPos(frame)[0]], 
-                                 [0,5,0,0])
+        elif type(self.shape) == type(CustomShape.Plane([], [])):
+            x = self.getPos(frame)[0]
+            self.shape.set_data([x,x,self.shape.get_L()+x,x], 
+                                [0,self.shape.get_H(),0,0])
         else:
             print("""Shape not yet supported. Add to update- and getPos-method
                                                     in class MovingShape""")
@@ -31,7 +31,6 @@ class MovingShape:
 
     def getPos(self,frame):
         return self.trajectory[frame]
-
 
 class ConnectingShape:
 
@@ -52,13 +51,11 @@ class ConnectingShape:
             self.shape = patches.ConnectionPatch(pos1,pos2,"data",
                                 axesA = self.shape.axesA,
                                 axesB = self.shape.axesB)
-        elif isinstance(self.shape, Spring):
+        elif isinstance(self.shape, CustomShape.Spring):
             self.shape.update(pos1,pos2)
         else:
             print("Shape not yet supported. Add to update-method in class ConnectingShape")
             sys.exit(-1)
-
-
 
 class StaticShape:
 

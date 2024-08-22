@@ -50,20 +50,17 @@ class Spring:
     def getArtists(self):
         return self.plot
     
-
 class Cylinder(plt.Circle):
 
     def __init__(self, *args, **kwargs):
         plt.Circle.__init__(self, *args, **kwargs)
         
-
     def set_R(self, R):
         self.R = R
 
     def get_R(self):
         return self.R
     
-
 class Plane(plt.Line2D):
 
     def __init__(self, *args, **kwargs):
