@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import Animation
 import AnimationShapes
 from CustomShape import Spring
-from CustomShape import Cylinder
-from CustomShape import Plane
 import Solution
 
 ######################### Create base plot #########################
@@ -30,40 +28,36 @@ colors = iter([plt.cm.Set1(i) for i in range(10)])
 circleRadius = (xlim[1]-xlim[0])/40
 
 # define all masses for animation as circles
-masses = [AnimationShapes.MovingShape(plt.Circle((0, 0), circleRadius, color=next(colors)), trajectory) for trajectory in Solution.trajectories]
+masses = [AnimationShapes.MovingShape(
+    plt.Circle((0, 0), circleRadius, color=next(colors)), trajectory
+) for trajectory in Solution.trajectories]
 
-# rod = AnimationShapes.ConnectingShape(plt.Line2D([0,0],[0,0], color='black'), masses[0], masses[1])
-# suspension = AnimationShapes.StaticShape(plt.Line2D([-20,20],[0,0], color='grey'))
+staticShapes = []
+for staticShape in Solution.staticShapes:
+    staticShapes.append(AnimationShapes.StaticShape(staticShape))
 
-# suspension = AnimationShapes.StaticShape(plt.Circle((0,0), 0.3*circleRadius, color='k'))
-# spring = AnimationShapes.ConnectingShape(Spring((0,0), (0,0), ax, r=0.5*circleRadius, ns=10), masses[1], suspension)
+connectingShapes = []
+for connectingShape in Solution.connectingShapes:
+    connectingShapes.append(AnimationShapes.ConnectingShape(connectingShape, masses[0], masses[1]))
 
-# # collect all shapes in array to pass to animate()
-# shapes = [
-#     *masses,
-#     spring,
-#     suspension
-# ]
+movingShapes = []
+for i in range(len(Solution.movingShapes)):
+    movingShapes.append(AnimationShapes.MovingShape(Solution.movingShapes[i], Solution.trajectories[i]))
 
-cy = Cylinder((0, 0), Solution.R, color='black')
-cy.set_R(Solution.R)
-cy.set_facecolor('none')
-pl = Plane([0,0,Solution.L,0], [0,Solution.H,0,0], color='k')
-pl.set_HL(Solution.H, Solution.L)
-
-# define all masses for animation as circles
-cylinder = AnimationShapes.MovingShape(cy, Solution.trajectories[1])
-plane = AnimationShapes.MovingShape(pl, Solution.trajectories[0])
+miscShapes = []
+spring = AnimationShapes.ConnectingShape(Spring((0,0), (0,0), ax, r=0.5*circleRadius, ns=10), masses[1], staticShapes[0])
+# miscShapes.append(spring)
 
 # collect all shapes in array to pass to animate()
 shapes = [
     *masses,
-    plane,
-    cylinder
+    *staticShapes,
+    *connectingShapes,
+    *movingShapes,
+    *miscShapes
 ]
 
 # classes of used custom shapes (shapes that are not contained in matplotlib)
-# customShapes = (Spring,)
+customShapes=(Spring,)
 
-Animation.animate(fig, ax, shapes, Solution.model.STEP_SIZE, 
-                  saveGif=True, fileName=Solution.model.name, fps=20, dpi=100)
+Animation.animate(fig, ax, shapes, Solution.model.STEP_SIZE, customShapes, saveGif=True, fileName=Solution.model.name, fps=20, dpi=100)

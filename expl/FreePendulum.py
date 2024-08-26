@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 from expl.Model import Model
 
@@ -43,6 +44,14 @@ class FreePendulum(Model):
     
     # generate solution
     solution = Model.solve(equationSystem, t, Y0)
+
+    Model.staticShapes = [
+        plt.Line2D([-20,20],[0,0], color='grey')
+    ]
+
+    Model.connectingShapes = [
+        plt.Line2D([0,0],[0,0], color='black')
+    ]
 
     def coordTrans(self, pos):
         x1 = pos[0]

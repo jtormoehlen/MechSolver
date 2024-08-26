@@ -1,6 +1,9 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 from expl.Model import Model
+from CustomShape import Cylinder
+from CustomShape import Plane
 
 ######################### Parameters #########################
 
@@ -47,6 +50,18 @@ class RollerPlane(Model):
     
     # generate solution
     solution = Model.solve(equationSystem, t, Y0)
+
+    Model.staticShapes = [
+        plt.Line2D([-20,20],[-0.2,-0.2], color='grey')
+    ]
+
+    Model.movingShapes = [
+        Plane([0,0,L,0], [0,H,0,0], color='k'),
+        Cylinder((0, 0), R, color='black')
+    ]
+    Model.movingShapes[0].set_HL(H, L)
+    Model.movingShapes[1].set_R(R)
+    Model.movingShapes[1].set_facecolor('none')
 
     def coordTrans(self, pos):
         x = pos[0] + R*pos[1]*np.cos(phi)

@@ -2,6 +2,10 @@
 This Solver is designed to find numerical solutions to Mechanics based problems. For that, a system of first order differential equations related to a specific problem is given. The solution is then computed numerically by the SciPy-based Runge-Kutta procedure. The result can the be plotted as a trajectory of mass points, simple geometric objects (e.g. line, square) or custom shapes (e.g. spring).
 
 ## Example: Free moving pendulum
+### Find lagrangian function manually
+$$
+\mathcal{L} = T-V = \frac{m_1+m_2}{2}\dot{x}_1^2+\frac{m_2}{2}l^2\dot{\varphi}^2+m_2 l \dot{x}_1 \dot{\varphi} \cos{\varphi} + m_2 g l \cos{\varphi}
+$$
 ### Defining differential equation system
 $$
 \begin{align}
@@ -67,6 +71,6 @@ omega0 = 2.5
 Y0 = np.array([x0, phi0, v0, omega0])
 ```
 ### Simple plot result
-![](./img/plot.png)
+![](./img/FreiBeweglichesPendelPlot.png)
 ### Advanced animation result
-![](./img/animation.gif)
+![](./img/FreiBeweglichesPendelAnim.gif)

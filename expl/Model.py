@@ -6,6 +6,9 @@ STEP_SIZE = 0.005
 class Model:
 
     STEP_SIZE = STEP_SIZE
+    staticShapes = []
+    connectingShapes = []
+    movingShapes = []
     
     def __init__(self, name):
         self.name = name

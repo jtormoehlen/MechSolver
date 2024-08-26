@@ -54,6 +54,7 @@ class Cylinder(plt.Circle):
 
     def __init__(self, *args, **kwargs):
         plt.Circle.__init__(self, *args, **kwargs)
+        self.set_facecolor('none')
         
     def set_R(self, R):
         self.R = R

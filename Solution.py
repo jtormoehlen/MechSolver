@@ -1,15 +1,17 @@
 import numpy as np
 
-from expl.FreeSpring import FreeSpring
 from expl.FreePendulum import FreePendulum
-from expl.RollerPlane import RollerPlane, R, L, H
+# from expl.RollerPlane import RollerPlane
+# from expl.FreeSpring import FreeSpring
 
-model = RollerPlane("RolleBeweglicheSchiefeEbene")
-# model = FreePendulum("FreiBeweglichesPendel")
+model = FreePendulum("FreiBeweglichesPendel")
+# model = RollerPlane("RolleBeweglicheSchiefeEbene")
 # model = FreeSpring("FreiSchwingendeFeder")
 T = model.T
 solution = model.solution
-R, L, H = R, L, H
+staticShapes = model.staticShapes
+connectingShapes = model.connectingShapes
+movingShapes = model.movingShapes
 
 # select only spatial coordinates
 spatialCoordsList = [sol for sol in solution.y]

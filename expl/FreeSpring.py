@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 from expl.Model import Model
 
@@ -38,6 +39,10 @@ class FreeSpring(Model):
     
     # generate solution
     solution = Model.solve(equationSystem, t, Y0)
+
+    staticShapes = [
+        plt.Circle((0,0), 0.5, color='k')
+    ]
 
     def coordTrans(self, pos):
         x1 = pos[0]*0
