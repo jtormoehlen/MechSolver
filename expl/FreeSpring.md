@@ -36,6 +36,6 @@ def coordTrans(self, pos):
     return [x1, y1, x2, y2]
 ```
 ## Simple plot result
-![](../img/FreiSchwingendefederPlot.png)
+![](../img/FreiSchwingendeFederPlot.png)
 ## Advanced animation result
-![](../img/FreiSchwingendefederAnim.gif)
+![](../img/FreiSchwingendeFederAnim.gif)
