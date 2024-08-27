@@ -1,12 +1,12 @@
 import numpy as np
 
-from expl.FreePendulum import FreePendulum
+# from expl.FreePendulum import FreePendulum
 # from expl.RollerPlane import RollerPlane
-# from expl.FreeSpring import FreeSpring
+from expl.FreeSpring import FreeSpring
 
-model = FreePendulum("FreiBeweglichesPendel")
+# model = FreePendulum("FreiBeweglichesPendel")
 # model = RollerPlane("RolleBeweglicheSchiefeEbene")
-# model = FreeSpring("FreiSchwingendeFeder")
+model = FreeSpring("FreiSchwingendeFeder")
 T = model.T
 solution = model.solution
 staticShapes = model.staticShapes

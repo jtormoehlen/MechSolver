@@ -27,10 +27,10 @@ class FreeSpring(Model):
         return dY
 
     # intial conditions
-    x0 = -1.0
-    phi0 = 90*np.pi/180
+    x0 = 0.1
+    phi0 = 60*np.pi/180
     v0 = 3.0
-    omega0 = 0.1
+    omega0 = -1.5
     Y0 = np.array([x0, phi0, v0, omega0])
 
     # time window [s]

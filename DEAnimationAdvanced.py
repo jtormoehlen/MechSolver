@@ -46,7 +46,7 @@ for i in range(len(Solution.movingShapes)):
 
 miscShapes = []
 spring = AnimationShapes.ConnectingShape(Spring((0,0), (0,0), ax, r=0.5*circleRadius, ns=10), masses[1], staticShapes[0])
-# miscShapes.append(spring)
+miscShapes.append(spring)
 
 # collect all shapes in array to pass to animate()
 shapes = [
@@ -60,4 +60,5 @@ shapes = [
 # classes of used custom shapes (shapes that are not contained in matplotlib)
 customShapes=(Spring,)
 
-Animation.animate(fig, ax, shapes, Solution.model.STEP_SIZE, customShapes, saveGif=True, fileName=Solution.model.name, fps=20, dpi=100)
+Animation.animate(fig, ax, shapes, Solution.model.STEP_SIZE, customShapes, 
+                  saveGif=True, fileName=Solution.model.name, fps=20, dpi=100)
