@@ -46,7 +46,7 @@ for i in range(len(Solution.movingShapes)):
 
 miscShapes = []
 spring = AnimationShapes.ConnectingShape(Spring((0,0), (0,0), ax, r=0.5*circleRadius, ns=10), masses[1], staticShapes[0])
-miscShapes.append(spring)
+# miscShapes.append(spring)
 
 # collect all shapes in array to pass to animate()
 shapes = [

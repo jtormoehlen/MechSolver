@@ -45,7 +45,7 @@ class RollerPlane(Model):
     Y0 = np.array([u0, theta0, v0, omega0])
 
     # time window [s]
-    Model.T = 6.0
+    Model.T = 10.0
     t = [0, Model.T]
     
     # generate solution
@@ -66,6 +66,8 @@ class RollerPlane(Model):
     def coordTrans(self, pos):
         x = pos[0] + R*pos[1]*np.cos(phi)
         y = H - R*pos[1]*np.sin(phi)
-        # if y2 <= 0.0:
-        #     y2 = 0.0
+        
+        for i in range(y.size):
+            if y[i] <= 0.0:
+                y[i] = 0.0
         return [pos[0],0.0*pos[0],x,y]

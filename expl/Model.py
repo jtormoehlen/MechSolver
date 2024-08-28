@@ -23,7 +23,7 @@ class Model:
     def equationSystem(t, Y):
         pass
 
-    ######################### Solving differential equation ######################### #!
+    ######################### Solving differential equation #########################
 
     # differential equation solver scipy.integrate.solve_ivp needs:
     #   a function that calculates the derivative at given point in time (here: equationSystem)
